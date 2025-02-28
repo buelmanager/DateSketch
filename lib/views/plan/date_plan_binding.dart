@@ -8,19 +8,19 @@ class DatePlanBinding {
     final viewModel = ref.watch(datePlanViewModelProvider);
     return [
       Step(
-        title: Text("테마 선택"),
+        title: const Text("테마 선택"),
         content: _buildRadioOptions(ref, viewModel.selectedTheme, [
           "감성 힐링", "미식 데이트", "액티브 데이트", "야경 데이트", "이색 체험", "문화/공연"
         ], ref.read(datePlanViewModelProvider.notifier).updateTheme),
       ),
       Step(
-        title: Text("예산 선택"),
+        title: const Text("예산 선택"),
         content: _buildRadioOptions(ref, viewModel.selectedBudget, [
           "3만 원 이하", "5만~10만 원", "10만 원 이상"
         ], ref.read(datePlanViewModelProvider.notifier).updateBudget),
       ),
       Step(
-        title: Text("위치 설정"),
+        title: const Text("위치 설정"),
         content: Column(
           children: [
             _buildRadioOptions(ref, viewModel.selectedLocation, [
@@ -43,7 +43,7 @@ class DatePlanBinding {
         ),
       ),
       Step(
-        title: Text("일정 구성"),
+        title: const Text("일정 구성"),
         content: _buildRadioOptions(ref, viewModel.selectedPlan, [
           "AI 자동 추천", "사용자 지정"
         ], ref.read(datePlanViewModelProvider.notifier).updatePlan),
@@ -68,7 +68,7 @@ class DatePlanBinding {
 
 class MapSelectionScreen extends StatefulWidget {
   final WidgetRef ref;
-  MapSelectionScreen(this.ref);
+  const MapSelectionScreen(this.ref, {super.key});
 
   @override
   _MapSelectionScreenState createState() => _MapSelectionScreenState();
@@ -76,7 +76,7 @@ class MapSelectionScreen extends StatefulWidget {
 
 class _MapSelectionScreenState extends State<MapSelectionScreen> {
   GoogleMapController? _mapController;
-  LatLng _selectedLocation = LatLng(37.5665, 126.9780);
+  LatLng _selectedLocation = const LatLng(37.5665, 126.9780);
 
   void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
@@ -97,9 +97,9 @@ class _MapSelectionScreenState extends State<MapSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("지도에서 위치 선택"),
+        title: const Text("지도에서 위치 선택"),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context, null);
           },
@@ -121,7 +121,7 @@ class _MapSelectionScreenState extends State<MapSelectionScreen> {
       //   },
       // ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.check),
+        child: const Icon(Icons.check),
         onPressed: _saveLocation,
       ),
     );

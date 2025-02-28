@@ -7,12 +7,14 @@ import 'date_plan_view_model.dart';
 import 'date_plan_binding.dart';
 
 class DatePlanSetupScreen extends ConsumerWidget {
+  const DatePlanSetupScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(datePlanViewModelProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text("📌 데이트 플랜 설정")),
+      appBar: AppBar(title: const Text("📌 데이트 플랜 설정")),
       body: Stepper(
         currentStep: viewModel.currentStep,
         onStepTapped: (step) {
@@ -45,7 +47,7 @@ class DatePlanSetupScreen extends ConsumerWidget {
     final String? savedData = prefs.getString("date_plans");
     List<Map<String, dynamic>> datePlans = savedData != null ? List<Map<String, dynamic>>.from(jsonDecode(savedData)) : [];
 
-    final uuid = Uuid();
+    const uuid = Uuid();
     final String timestamp = DateTime.now().toLocal().toString();
     final datePlanData = {
       "uid": uuid.v4(), // 고유 UID 생성
@@ -80,26 +82,26 @@ class DatePlanResultScreen extends ConsumerWidget {
     final viewModel = ref.watch(datePlanViewModelProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text("📅 데이트 플랜 결과")),
+      appBar: AppBar(title: const Text("📅 데이트 플랜 결과")),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("✅ 테마: ${viewModel.selectedTheme}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10),
-            Text("💰 예산: ${viewModel.selectedBudget}", style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text("📍 위치: ${viewModel.selectedLocation}", style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text("📌 일정 계획: ${viewModel.selectedPlan}", style: TextStyle(fontSize: 18)),
-            SizedBox(height: 30),
+            Text("✅ 테마: ${viewModel.selectedTheme}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            Text("💰 예산: ${viewModel.selectedBudget}", style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Text("📍 위치: ${viewModel.selectedLocation}", style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Text("📌 일정 계획: ${viewModel.selectedPlan}", style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 30),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("🏡 메인 메뉴로 돌아가기"),
+                child: const Text("🏡 메인 메뉴로 돌아가기"),
               ),
             ),
           ],

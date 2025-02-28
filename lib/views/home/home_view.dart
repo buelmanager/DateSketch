@@ -5,11 +5,13 @@ import 'home_binding.dart';
 import 'saved_date_plans_screen.dart';
 
 class HomeView extends ConsumerWidget {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedMenuProvider);
     return Scaffold(
-      appBar: AppBar(title: Text("🎯 데이트 플래너")),
+      appBar: AppBar(title: const Text("🎯 데이트 플래너")),
       body: IndexedStack(
         index: selectedIndex,
         children: [
