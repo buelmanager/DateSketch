@@ -36,3 +36,5 @@ ios/.symlinks/
 # 개인 설정 파일 제외
 *.iml
 .idea/
+
+#test1
