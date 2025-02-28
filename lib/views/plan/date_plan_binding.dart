@@ -43,11 +43,9 @@ class DatePlanBinding {
         ),
       ),
       Step(
-<<<<<<< HEAD
-        title: Text("일정 구성"),
-=======
+
         title: const Text("일정 구성"),
->>>>>>> develop
+
         content: _buildRadioOptions(ref, viewModel.selectedPlan, [
           "AI 자동 추천", "사용자 지정"
         ], ref.read(datePlanViewModelProvider.notifier).updatePlan),
