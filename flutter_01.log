@@ -1,0 +1,72 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color run --machine --track-widget-creation --device-id=00008101-001E6D8C3E02001E --start-paused --dart-define=flutter.inspector.structuredErrors=true lib/main.dart
+
+## exception
+
+SocketException: SocketException: Send failed (OS Error: No route to host, errno = 65), address = 0.0.0.0, port = 5353
+
+```
+#0      _NativeSocket.send (dart:io-patch/socket_patch.dart:1269:34)
+#1      _RawDatagramSocket.send (dart:io-patch/socket_patch.dart:2584:15)
+#2      MDnsClient.lookup (package:multicast_dns/multicast_dns.dart:225:14)
+#3      MDnsVmServiceDiscovery._pollingVmService (package:flutter_tools/src/mdns_discovery.dart:232:66)
+<asynchronous suspension>
+#4      MDnsVmServiceDiscovery.firstMatchingVmService (package:flutter_tools/src/mdns_discovery.dart:188:56)
+<asynchronous suspension>
+#5      MDnsVmServiceDiscovery.getVMServiceUriForLaunch (package:flutter_tools/src/mdns_discovery.dart:433:50)
+<asynchronous suspension>
+#6      Future.wait.<anonymous closure> (dart:async/future.dart:524:21)
+<asynchronous suspension>
+#7      Future.any.onValue (dart:async/future.dart:618:5)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 3.22.2, on macOS 15.1.1 24B91 darwin-arm64, locale ko-KR)
+    • Flutter version 3.22.2 on channel stable at /Users/chulheewon/sdk/flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision 761747bfc5 (9 months ago), 2024-06-05 22:15:13 +0200
+    • Engine revision edd8546116
+    • Dart version 3.4.3
+    • DevTools version 2.34.3
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+    • Android SDK at /Users/chulheewon/Library/Android/sdk
+    • Platform android-34, build-tools 34.0.0
+    • ANDROID_HOME = /Users/chulheewon/Library/Android/sdk
+    • Java binary at: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java
+    • Java version OpenJDK Runtime Environment (build 17.0.6+0-17.0.6b829.9-10027231)
+    • All Android licenses accepted.
+
+[✓] Xcode - develop for iOS and macOS (Xcode 16.2)
+    • Xcode at /Applications/Xcode.app/Contents/Developer
+    • Build 16C5032a
+    • CocoaPods version 1.15.2
+
+[✗] Chrome - develop for the web (Cannot find Chrome executable at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome)
+    ! Cannot find Chrome. Try setting CHROME_EXECUTABLE to a Chrome executable.
+
+[✓] Android Studio (version 2022.3)
+    • Android Studio at /Applications/Android Studio.app/Contents
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 17.0.6+0-17.0.6b829.9-10027231)
+
+[✓] Connected device (3 available)
+    • chulhee의 iPhone (2) (mobile)    • 00008101-001E6D8C3E02001E • ios          • iOS 18.3 22D5040d
+    • macOS (desktop)                 • macos                     • darwin-arm64 • macOS 15.1.1 24B91 darwin-arm64
+    • Mac Designed for iPad (desktop) • mac-designed-for-ipad     • darwin       • macOS 15.1.1 24B91 darwin-arm64
+
+[✓] Network resources
+    • All expected network resources are available.
+
+! Doctor found issues in 1 category.
+```
