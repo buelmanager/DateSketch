@@ -25,3 +25,14 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# 빌드된 바이너리 파일 제외
+android/app/debug/
+android/app/release/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/.symlinks/
+
+# 개인 설정 파일 제외
+*.iml
+.idea/
