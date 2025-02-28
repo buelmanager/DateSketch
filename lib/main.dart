@@ -43,8 +43,8 @@ class AuthChecker extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authServiceProvider).authStateChanges;
 
-    // final authService = ref.read(authServiceProvider);
-    // authService.signOut();
+    final authService = ref.read(authServiceProvider);
+    authService.signOut();
 
     return StreamBuilder(
       stream: authState,

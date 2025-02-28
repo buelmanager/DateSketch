@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/services/auth_service.dart';
 import 'signup_screen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -39,11 +40,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
   }
 
+  Future<void> _loginWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    final authService = ref.read(authServiceProvider);
+    final user = await authService.signInWithGoogle();
+    if (user == null) {
+      setState(() {
+        _errorMessage = "Google 로그인에 실패했습니다.";
+      });
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("로그인")),
-      body: Padding(
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +92,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _isLoading ? null : _login,
-              child: _isLoading ? const CircularProgressIndicator(color: Colors.white) : const Text("로그인"),
+              child: _isLoading
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const Text("로그인"),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _isLoading ? null : _loginWithGoogle,
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/google_logo.png", height: 24),
+                  const SizedBox(width: 10),
+                  const Text("Google 로그인", style: TextStyle(color: Colors.black)),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             TextButton(
