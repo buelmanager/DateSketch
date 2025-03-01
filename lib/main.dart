@@ -14,6 +14,8 @@ void main() async {
   );
 
   await _requestLocationPermission();
+
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -51,7 +53,7 @@ class AuthChecker extends ConsumerWidget {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final user = snapshot.data;
-          return user == null ? LoginScreen() : const HomeView();
+          return user == null ? LoginScreen() : HomeView();
         }
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       },

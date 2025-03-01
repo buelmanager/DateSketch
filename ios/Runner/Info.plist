@@ -47,5 +47,16 @@
 	</array>
 	<key>GMSApiKey</key>
     <string>AIzaSyC9MYv-HG3RJScpjcVhH7ZdsFbe1AfcEYo</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.934589307904-4oq4k7cg5l81ab0h69ncjrulos26t4le</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
