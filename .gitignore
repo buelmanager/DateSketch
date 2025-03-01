@@ -37,4 +37,6 @@ ios/.symlinks/
 *.iml
 .idea/
 
+ios/Runner.xcworkspace/xcuserdata/
+
 #test4
