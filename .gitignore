@@ -32,11 +32,11 @@ android/app/release/
 ios/Flutter/App.framework
 ios/Flutter/Flutter.framework
 ios/.symlinks/
-
+ios/Runner.xcworkspace/xcuserdata/
 # 개인 설정 파일 제외
 *.iml
 .idea/
 
-ios/Runner.xcworkspace/xcuserdata/
+
 
 #test4
