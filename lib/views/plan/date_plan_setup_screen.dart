@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'date_plan_view_model.dart';
 import 'date_plan_binding.dart';
 
@@ -49,8 +50,16 @@ class DatePlanSetupScreen extends ConsumerWidget {
 
     const uuid = Uuid();
     final String timestamp = DateTime.now().toLocal().toString();
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      print("⚠️ 유저가 로그인되어 있지 않습니다.");
+      return;
+    }
+
     final datePlanData = {
       "uid": uuid.v4(), // 고유 UID 생성
+      "user_uid": user.uid, // 유저 UID 저장
       "theme": viewModel.selectedTheme,
       "budget": viewModel.selectedBudget,
       "location": viewModel.selectedLocation,
