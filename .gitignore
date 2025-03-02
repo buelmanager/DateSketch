@@ -38,5 +38,6 @@ ios/Runner.xcworkspace/xcuserdata/
 .idea/
 
 
-
-#test4
+#git rm --cached ios/Runner.xcworkspace/xcuserdata/chulheewon.xcuserdatad/UserInterfaceState.xcuserstate
+ #git commit -m "Remove UserInterfaceState.xcuserstate"
+ #git push origin main
