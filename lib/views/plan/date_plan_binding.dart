@@ -123,8 +123,8 @@ class _MapSelectionScreenState extends State<MapSelectionScreen> {
       //   },
       // ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.check),
         onPressed: _saveLocation,
+        child: const Icon(Icons.check),
       ),
     );
   }

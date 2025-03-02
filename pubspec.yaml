@@ -40,12 +40,14 @@ dependencies:
   get_it: ^8.0.3
   flutter_riverpod: ^2.6.1
   google_maps_flutter: ^2.10.1
-  permission_handler: ^11.3.1
   shared_preferences: ^2.3.3
   uuid: ^4.5.1
   firebase_auth: ^5.5.1
   google_sign_in: ^6.2.2
 
+  firebase_core: any
+  permission_handler: ^11.3.1
+  cloud_firestore: ^5.6.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -97,3 +99,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  ## cd ios
+  #rm -rf Pods Podfile.lock
+  #pod install --repo-update
+  #cd ..
+  #flutter clean
+  #flutter pub get
+  #flutter run
