@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../home/home_view.dart';
+import '../home/home_viewmodel.dart';
 import 'date_plan_view_model.dart';
 import 'date_plan_binding.dart';
 
@@ -56,6 +58,7 @@ class DatePlanSetupScreen extends ConsumerWidget {
 
     if (user == null) {
       print("⚠️ 유저가 로그인되어 있지 않습니다.");
+
       return;
     }
 
@@ -118,7 +121,12 @@ class DatePlanResultScreen extends ConsumerWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  ref.read(selectedMenuProvider.notifier).state = 0;
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeView()),
+                        (Route<dynamic> route) => false,
+                  );
                 },
                 child: const Text("🏡 메인 메뉴로 돌아가기"),
               ),

@@ -8,13 +8,12 @@ import 'firebase_options.dart';
 import 'views/home/home_view.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // Firebase 초기화 전 바인딩
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform, // Firebase 설정 불러오기
   );
 
   await _requestLocationPermission();
-
 
   runApp(const ProviderScope(child: MyApp()));
 }
