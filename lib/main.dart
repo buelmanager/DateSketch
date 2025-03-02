@@ -53,7 +53,7 @@ class AuthChecker extends ConsumerWidget {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final user = snapshot.data;
-          return user == null ? LoginScreen() : HomeView();
+          return user == null ? const LoginScreen() : const HomeView();
         }
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       },

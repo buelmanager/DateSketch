@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,9 +70,17 @@ class DatePlanSetupScreen extends ConsumerWidget {
       "created_at": timestamp // 저장된 날짜 및 시간 추가
     };
 
+    // SharedPreferences에 저장
     datePlans.add(datePlanData);
     await prefs.setString("date_plans", jsonEncode(datePlans));
-    print("📌 저장된 데이트 플랜 목록: ${jsonEncode(datePlans)}");
+    if (kDebugMode) {
+      print("📌 datePlanData : $datePlanData");
+      print("📌 datePlanData[uid] : ${datePlanData["uid"]}");
+    }
+
+    // Firestore에 저장
+    await FirebaseFirestore.instance.collection("date_plans").doc(datePlanData["uid"]).set(datePlanData);
+    print("📌 저장된 데이트 플랜 목록 (Firestore): ${jsonEncode(datePlanData)}");
   }
 
   Future<void> _loadDatePlans() async {

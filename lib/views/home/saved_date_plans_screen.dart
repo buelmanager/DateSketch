@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_viewmodel.dart';
 
 class SavedDatePlansScreen extends ConsumerWidget {
+  const SavedDatePlansScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final savedPlans = ref.watch(savedPlansProvider);
     return Scaffold(
       //appBar: AppBar(title: Text("📅 저장된 데이트 플랜")),
       body: savedPlans.isEmpty
-          ? Center(child: Text("저장된 데이트 플랜이 없습니다."))
+          ? const Center(child: Text("저장된 데이트 플랜이 없습니다."))
           : ListView.builder(
         itemCount: savedPlans.length,
         itemBuilder: (context, index) {
           final plan = savedPlans[index];
           return Card(
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             child: ListTile(
               title: Text("테마: ${plan["theme"]}"),
               subtitle: Text("저장 날짜: ${plan["created_at"]}"),
               trailing: IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
+                icon: const Icon(Icons.delete, color: Colors.red),
                 onPressed: () => _confirmDelete(context, ref, plan["uid"]),
               ),
               onTap: () => _showPlanDetails(context, ref, plan),
@@ -36,7 +39,7 @@ class SavedDatePlansScreen extends ConsumerWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("📅 데이트 플랜 상세 정보"),
+          title: const Text("📅 데이트 플랜 상세 정보"),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -51,14 +54,14 @@ class SavedDatePlansScreen extends ConsumerWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text("닫기"),
+              child: const Text("닫기"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _confirmDelete(context, ref, plan["uid"]);
               },
-              child: Text("삭제", style: TextStyle(color: Colors.red)),
+              child: const Text("삭제", style: TextStyle(color: Colors.red)),
             ),
           ],
         );
@@ -71,19 +74,20 @@ class SavedDatePlansScreen extends ConsumerWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("삭제 확인"),
-          content: Text("정말로 삭제하시겠습니까?"),
+          title: const Text("삭제 확인"),
+          content: const Text("정말로 삭제하시겠습니까?"),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text("취소"),
+              child: const Text("취소"),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
                 Navigator.pop(context);
+                await FirebaseFirestore.instance.collection("date_plans").doc(uid).delete();
                 ref.read(savedPlansProvider.notifier).deletePlan(uid);
               },
-              child: Text("삭제", style: TextStyle(color: Colors.red)),
+              child: const Text("삭제", style: TextStyle(color: Colors.red)),
             ),
           ],
         );

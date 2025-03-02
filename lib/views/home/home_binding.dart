@@ -15,33 +15,33 @@ class HomeBinding {
               ref.read(selectedMenuProvider.notifier).state = 1;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DatePlanSetupScreen()),
+                MaterialPageRoute(builder: (context) => const DatePlanSetupScreen()),
               ).then((_) {
                 ref.read(selectedMenuProvider.notifier).state = 0;
               });
             },
-            child: Text("📌 데이트 플랜 설정"),
+            child: const Text("📌 데이트 플랜 설정"),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               // 랜덤 데이트 플랜 기능 추가 가능
             },
-            child: Text("🎲 랜덤 데이트 플랜"),
+            child: const Text("🎲 랜덤 데이트 플랜"),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               // 인기 있는 데이트 코스 기능 추가 가능
             },
-            child: Text("🔥 인기 데이트 코스"),
+            child: const Text("🔥 인기 데이트 코스"),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               // 데이트 팁 & 리뷰 기능 추가 가능
             },
-            child: Text("💡 데이트 팁 & 리뷰"),
+            child: const Text("💡 데이트 팁 & 리뷰"),
           ),
         ],
       ),
